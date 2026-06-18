@@ -1,0 +1,40 @@
+{
+  "name": "pi-linear",
+  "version": "1.0.0",
+  "description": "Interact with Linear issues, comments, labels, projects, teams, and user profiles from Pi.",
+  "type": "module",
+  "exports": {
+    ".": "./extensions/linear/index.ts",
+    "./linear": "./extensions/linear/index.ts"
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "lint": "biome check --write .",
+    "lint:check": "biome check .",
+    "prepare": "node .husky/install.mjs",
+    "test": "node --import tsx --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.16",
+    "@earendil-works/pi-ai": "^0.79.0",
+    "@earendil-works/pi-coding-agent": "^0.79.0",
+    "@earendil-works/pi-tui": "^0.79.0",
+    "@types/node": "^22.15.0",
+    "husky": "^9.1.7",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@linear/sdk": "^86.0.0",
+    "typebox": "^1.1.38"
+  }
+}
