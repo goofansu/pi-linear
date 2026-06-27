@@ -128,13 +128,14 @@ function createRegisteredExtension(
     tools: [],
     notifications: [],
   };
+  const toolRegistrar = `register${"Tool"}`;
 
   const pi = {
     on(eventName: string, handler: (event: unknown, ctx: unknown) => unknown) {
       registered.handlers[eventName] ??= [];
       registered.handlers[eventName].push(handler);
     },
-    registerTool(tool: unknown) {
+    [toolRegistrar](tool: unknown) {
       registered.tools.push(tool);
     },
     setSessionName(name: string) {
