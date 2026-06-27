@@ -17,17 +17,17 @@ const LINEAR_PROMPT_PATTERN =
   /^\s*Analyze\s+Linear\s+issue:\s*([A-Z][A-Z0-9]+-\d+)(?:\s|$)/i;
 const WIDGET_ID = "linear-issue";
 
-export interface LinearPromptMatch {
+interface LinearPromptMatch {
   issueId: string;
 }
 
-export interface LinearAttachmentLike {
+interface LinearAttachmentLike {
   id: string;
   title?: string | null;
   url?: string | null;
 }
 
-export interface LinearIssueLike {
+interface LinearIssueLike {
   id: string;
   identifier?: string;
   title?: string;
@@ -41,15 +41,15 @@ export interface LinearIssueLike {
     | { nodes: LinearAttachmentLike[] };
 }
 
-export interface LinearClientLike {
+interface LinearClientLike {
   issue?(id: string): Promise<LinearIssueLike> | LinearIssueLike;
 }
 
-export interface LinearExtensionOptions {
+interface LinearExtensionOptions {
   createClient?: () => LinearClientLike;
 }
 
-export function extractLinearPromptMatch(
+function extractLinearPromptMatch(
   prompt: string,
 ): LinearPromptMatch | undefined {
   const match = prompt.match(LINEAR_PROMPT_PATTERN);
@@ -76,7 +76,7 @@ function attachmentLabel(attachment: LinearAttachmentLike): string {
   return attachment.title?.trim() || attachment.id;
 }
 
-export async function loadIssueAttachments(
+async function loadIssueAttachments(
   issue: LinearIssueLike,
 ): Promise<LinearAttachmentLike[]> {
   if (!issue.attachments) return [];
@@ -84,7 +84,7 @@ export async function loadIssueAttachments(
   return connection.nodes;
 }
 
-export function formatLinearIssueContext(
+function formatLinearIssueContext(
   issue: LinearIssueLike,
   attachments: LinearAttachmentLike[] = [],
 ): string {
@@ -118,7 +118,7 @@ export function formatLinearIssueContext(
   return lines.join("\n");
 }
 
-export function linearIssueSummary(
+function linearIssueSummary(
   issue: LinearIssueLike,
   attachments: LinearAttachmentLike[] = [],
 ): {

@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Inject Linear issue context into Pi prompts and display a Linear issue widget.",
   "type": "module",
-  "exports": {
-    ".": "./extensions/linear/index.ts",
-    "./linear": "./extensions/linear/index.ts"
-  },
   "keywords": [
     "pi-package"
   ],
