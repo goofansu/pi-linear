@@ -22,6 +22,8 @@ Set `LINEAR_API_KEY` to a Linear personal API key from Linear **Settings > Accou
 
 <https://linear.app/settings/account/security>
 
+When creating the key, select only the **Read** permission. This extension only reads issue details and attachment links; it does not create or update Linear data.
+
 ## Attachment behavior
 
 Linear attachments are injected as linked metadata only:
