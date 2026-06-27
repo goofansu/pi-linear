@@ -18,7 +18,9 @@ When the prompt matches, the extension fetches the Linear issue, injects its URL
 
 ## Configuration
 
-Set `LINEAR_API_KEY` to a Linear personal API key from <https://linear.app/settings/api>.
+Set `LINEAR_API_KEY` to a Linear personal API key from Linear **Settings > Account > Security & access**:
+
+<https://linear.app/settings/account/security>
 
 ## Attachment behavior
 
