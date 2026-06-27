@@ -22,13 +22,21 @@ describe("extractLinearPromptMatch", () => {
     );
   });
 
-  it("does not match arbitrary issue ids in prose", () => {
+  it("does not match arbitrary issue ids in prose or malformed explicit prompt tokens", () => {
     assert.equal(extractLinearPromptMatch("Please inspect LIN-123"), undefined);
     assert.equal(
       extractLinearPromptMatch("Analyze GitHub issue: LIN-123"),
       undefined,
     );
     assert.equal(extractLinearPromptMatch("Analyze Linear issue"), undefined);
+    assert.equal(
+      extractLinearPromptMatch("Analyze Linear issue: nope"),
+      undefined,
+    );
+    assert.equal(
+      extractLinearPromptMatch("Analyze Linear issue: https://example.com"),
+      undefined,
+    );
   });
 });
 

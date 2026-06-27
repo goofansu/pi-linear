@@ -13,7 +13,8 @@ import {
 import { Container, Text } from "@earendil-works/pi-tui";
 import { LinearClient } from "@linear/sdk";
 
-const LINEAR_PROMPT_PATTERN = /^\s*Analyze\s+Linear\s+issue:\s*(\S+)/i;
+const LINEAR_PROMPT_PATTERN =
+  /^\s*Analyze\s+Linear\s+issue:\s*([A-Z][A-Z0-9]+-\d+)(?:\s|$)/i;
 const WIDGET_ID = "linear-issue";
 
 export interface LinearPromptMatch {
@@ -278,6 +279,8 @@ export default function linearExtension(
   }
 
   pi.on("session_start", async (_event, ctx) => {
+    if (!ctx.hasUI) return;
+
     if (!process.env.LINEAR_API_KEY) {
       ctx.ui.notify(
         "linear: LINEAR_API_KEY is not set — Linear issue context will fail.",
@@ -285,7 +288,6 @@ export default function linearExtension(
       );
     }
 
-    if (!ctx.hasUI) return;
     const match = latestPromptMatch(ctx);
     if (!match) {
       ctx.ui.setWidget(WIDGET_ID, undefined);
