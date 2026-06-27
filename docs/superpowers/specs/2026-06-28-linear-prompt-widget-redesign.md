@@ -63,7 +63,9 @@ Keep the package dependency on `@linear/sdk`; keep `typebox` only if still neede
 
 ## Session Restore
 
-On `session_start`, inspect prior user messages in the session branch. If the latest matching user prompt is found, rebuild the widget and session name by fetching the issue again. If no match exists, clear the Linear widget.
+On `session_start`, rebuild UI state only when `ctx.hasUI` is true. Inspect prior user messages in the active session branch with `ctx.sessionManager.getBranch()`, iterate backward by index, and stop at the first matching user prompt. This avoids scanning inactive branches and avoids allocating a reversed copy of the entries.
+
+If the latest matching user prompt is found, rebuild the widget and session name by fetching the issue again. If no match exists, clear the Linear widget. Do not fetch Linear during restore unless a matching prompt is found.
 
 ## Tests
 
